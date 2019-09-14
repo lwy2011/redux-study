@@ -1,0 +1,9 @@
+.clock{
+    display: flex;
+    padding:2em;
+    background: #61dafb;
+    opacity: .7;
+}
+.time{
+    color:rebeccapurple;
+}
