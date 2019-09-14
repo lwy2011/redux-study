@@ -18,12 +18,11 @@
 .add{
     width:100%;text-align: left;
 }
-button{cursor: pointer; outline: none; }
+button{cursor: pointer; outline: none; margin:0 1em;}
 input {
     border:1px solid #282c34;min-width:10em;padding:4px; margin-right: 1em;
 }
 ul{
-    border :1px solid #000;
     border-radius: 4px;
     background:#282c34;
     opacity: .7;
