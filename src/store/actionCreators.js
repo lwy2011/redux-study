@@ -11,7 +11,7 @@ export const addNoteAction = (list) =>({
     type : ADD_NOTE,
     list
 });
-export const editNoteAction = list =>({
+export const editNoteAction = (list) =>({
     type : EDIT_NOTE,
     list
 });

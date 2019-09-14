@@ -4,11 +4,13 @@
     background: #61dafb;
     opacity: .7;
     flex-wrap: wrap;
+    font-size:16px;
 }
+
 .time{
     color:cornflowerblue; text-align: right;
 }
-.listTime {
+.listTime,.editTime {
     font-size: 12px;
     color:darkblue;
     text-align: right;
@@ -16,14 +18,15 @@
 .add{
     width:100%;text-align: left;
 }
+button{cursor: pointer; outline: none; }
 input {
     border:1px solid #282c34;min-width:10em;padding:4px; margin-right: 1em;
 }
 ul{
-    border :1px solid #282c34;
+    border :1px solid #000;
     border-radius: 4px;
     background:#282c34;
-    opacity: .6;
+    opacity: .7;
 }
 li {
     padding : 4px;border-bottom:1px solid #fff;list-style: none;
@@ -34,8 +37,9 @@ li:last-child{border-bottom: none;}
     margin :8px;
     font-size:13px;
     cursor: pointer;
-
+    display: inline-block;
+    padding:2px;border-radius: 2px;
 }
 .edit:hover,.delete:hover{
-    color: red;
+    color: red;background: yellow;
 }

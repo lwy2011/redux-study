@@ -8,9 +8,10 @@ const Test = () => {
     const [note, setNote] = useState('');
     // const [lists,setLists] = useState([]);
     const [edit,setEdit] = useState(undefined);
+
     const Lists = store.getState();
 
-    // store.subscribe(()=>{console.log(Lists)});
+    // store.subscribe(()=>{console.log(Lists)});函数式不订阅，也是可以的。
     useEffect(
         () => {
             setTimeout(
@@ -41,7 +42,7 @@ const Test = () => {
     };
     const editStart = (index,note) =>setEdit({index,note});
     const editOver = ()=>{
-        const action = editNoteAction({id:now,note:edit.note});
+        const action = editNoteAction({now,...edit});
         store.dispatch(action);
         // const value = [].concat(lists);
         // value.splice(edit.id,1,{id:now,note:edit.note});
@@ -88,6 +89,11 @@ const Test = () => {
                                     {'删除'}
                                 </span>
                             </div>
+                            {
+                                list.edit && <p className="editTime">
+                                    {list.edit}修改！
+                                </p>
+                            }
                         </li>)
                     }
                 </ul>
