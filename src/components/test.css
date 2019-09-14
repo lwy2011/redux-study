@@ -6,7 +6,12 @@
     flex-wrap: wrap;
 }
 .time{
-    color:rebeccapurple;
+    color:cornflowerblue; text-align: right;
+}
+.listTime {
+    font-size: 12px;
+    color:darkblue;
+    text-align: right;
 }
 .add{
     width:100%;text-align: left;
@@ -30,4 +35,7 @@ li:last-child{border-bottom: none;}
     font-size:13px;
     cursor: pointer;
 
+}
+.edit:hover,.delete:hover{
+    color: red;
 }

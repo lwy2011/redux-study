@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import './test.css'
-
+import store from '../store/index.js'
+import {deleteNoteAction, addNoteAction, editNoteAction} from "../store/actionCreators";
 
 const Test = () => {
     const [now, setTimer] = useState(new Date().toLocaleString());
     const [note, setNote] = useState('');
-    const [lists,setLists] = useState([]);
+    // const [lists,setLists] = useState([]);
     const [edit,setEdit] = useState(undefined);
+    const Lists = store.getState();
+
+    // store.subscribe(()=>{console.log(Lists)});
     useEffect(
         () => {
             setTimeout(
@@ -19,20 +23,29 @@ const Test = () => {
         if(!note) return;
         const obj = {id:now,note};
         setNote('');
-        setLists(lists.concat([obj]));
+        //setLists(lists.concat([obj]));
+        //这里把方法传递给store
+        const action  = addNoteAction(obj);
+        store.dispatch(action)
     };
     const deleteNote = index => {
-        const value = [].concat(lists);
-        value.splice(index,1);
-        // console.log(index,value);
+        // const value = [].concat(lists);
+        // value.splice(index,1);
+        // // console.log(index,value);
+        //
+        // setLists(value)
 
-        setLists(value)
+        //这里把方法传递给store
+        const action = deleteNoteAction(index);
+        store.dispatch(action)
     };
-    const editStart = index =>setEdit({id:index,note:lists[index].note});
+    const editStart = (index,note) =>setEdit({index,note});
     const editOver = ()=>{
-        const value = [].concat(lists);
-        value.splice(edit.id,1,{id:now,note:edit.note});
-        setLists(value);
+        const action = editNoteAction({id:now,note:edit.note});
+        store.dispatch(action);
+        // const value = [].concat(lists);
+        // value.splice(edit.id,1,{id:now,note:edit.note});
+        // setLists(value);
         setEdit(undefined)
     };
 
@@ -48,14 +61,14 @@ const Test = () => {
             </div>
 
             {
-                lists.length > 0 ?
+                Lists.length > 0 ?
                 <ul>
                     {
-                        lists.map((list,index)=><li key={index}>
+                        Lists.map((list,index)=><li key={index}>
                             <p>
                                 {
 
-                                    edit && edit.id === index ? <>
+                                    edit && edit.index === index ? <>
                                            <input type="text"
                                                   value={edit.note}
                                                   onChange={e=>setEdit({...edit,note:e.target.value})} />
@@ -64,11 +77,11 @@ const Test = () => {
                                     list.note
                                 }
                             </p>
-                            <span>
+                            <span className="listTime">
                                 {list.id}
                             </span>
                             <div>
-                                <span className="edit" onClick={()=> editStart(index)}>
+                                <span className="edit" onClick={()=> editStart(index,list.note)}>
                                     {'编辑'}
                                 </span>
                                 <span className="delete" onClick={()=>deleteNote(index)}>
