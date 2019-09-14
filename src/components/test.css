@@ -3,7 +3,31 @@
     padding:2em;
     background: #61dafb;
     opacity: .7;
+    flex-wrap: wrap;
 }
 .time{
     color:rebeccapurple;
+}
+.add{
+    width:100%;text-align: left;
+}
+input {
+    border:1px solid #282c34;min-width:10em;padding:4px; margin-right: 1em;
+}
+ul{
+    border :1px solid #282c34;
+    border-radius: 4px;
+    background:#282c34;
+    opacity: .6;
+}
+li {
+    padding : 4px;border-bottom:1px solid #fff;list-style: none;
+}
+li:last-child{border-bottom: none;}
+
+.edit , .delete{
+    margin :8px;
+    font-size:13px;
+    cursor: pointer;
+
 }
