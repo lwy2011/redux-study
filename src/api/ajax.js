@@ -13,7 +13,7 @@ export const ajax =  (url='/',params={},type='GET')=>{
                     );
                 paramsStr && paramsStr.substr(0,1)
                 url += paramsStr ? '?'+paramsStr : ''
-                debugger;
+                // debugger;
                 promise = axios.get(url)
             }else if('POST' === type.toUpperCase()){
                 promise = axios.post(
