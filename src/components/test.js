@@ -3,6 +3,7 @@ import './test.css'
 import store from '../store/index.js'
 import {addNoteAction} from "../store/actionCreators";
 import {List} from "./list";
+import {shopData} from "../api";
 
 const Test = () => {
     const [now, setTimer] = useState(new Date().toLocaleString());
@@ -18,7 +19,15 @@ const Test = () => {
             )
         }, [now]
     );
-
+    const shops = async ()=>{
+        const shops = await shopData() ;
+        console.log(shops);
+    };
+    useEffect(
+         () => {
+            shops()
+        },[]
+    );
     const addNotes = ()=>{
         if(!note) return;
         const obj = {id:now,note};

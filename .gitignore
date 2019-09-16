@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /public
+/redux-api
 /.pnp
 .pnp.js
 
