@@ -25,7 +25,7 @@ const Test = () => {
             const action = getAllNotesAction(shops);
             store.dispatch(action)
         }
-        console.log(shops);
+        // console.log(shops);
     };
     useEffect(
          () => {

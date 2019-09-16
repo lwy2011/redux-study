@@ -26,6 +26,7 @@ ul{
     border-radius: 4px;
     background:#282c34;
     opacity: .7;
+    padding:4px;
 }
 li {
     padding : 4px;border-bottom:1px solid #fff;list-style: none;
