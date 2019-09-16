@@ -19,17 +19,17 @@ const Test = () => {
             )
         }, [now]
     );
-    const shops = async ()=>{
-        const shops = await shopData() ;
-        if(shops.success_code === 200){
-            const action = getAllNotesAction(shops);
-            store.dispatch(action)
-        }
-        // console.log(shops);
-    };
+    // const shops = async ()=>{
+    //     const shops = await shopData() ;
+    //     if(shops.success_code === 200){
+    //         const action = getAllNotesAction(shops);
+    //         store.dispatch(action)
+    //     }
+    // };
     useEffect(
          () => {
-            shops()
+             const action = getAllNotesAction();
+             store.dispatch(action);
         },[]
     );
     const addNotes = ()=>{

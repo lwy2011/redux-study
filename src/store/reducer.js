@@ -21,7 +21,7 @@ export default (state = defaultState ,action)=>{
         value.splice(index,1,{id:value[index].id,edit:now,note});
         return value
     }else if(action.type === GET_ALLNOTE){
-        return action.lists.lists
+        return action.lists
     }
     return state;
 }
