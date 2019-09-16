@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './test.css'
 import store from '../store/index.js'
-import {addNoteAction} from "../store/actionCreators";
+import {addNoteAction, getAllNotesAction} from "../store/actionCreators";
 import {List} from "./list";
 import {shopData} from "../api";
 
@@ -21,6 +21,10 @@ const Test = () => {
     );
     const shops = async ()=>{
         const shops = await shopData() ;
+        if(shops.success_code === 200){
+            const action = getAllNotesAction(shops);
+            store.dispatch(action)
+        }
         console.log(shops);
     };
     useEffect(
@@ -52,6 +56,7 @@ const Test = () => {
             {
                 Lists.length > 0 ?
                 <ul>
+                    {/*{console.log(JSON.stringify(Lists))}*/}
                     {
                         Lists.map((list,index)=>
                             <List index={index}
