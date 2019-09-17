@@ -1,6 +1,6 @@
 //方法汇总,与action挂钩
 
-import {ADD_NOTE, DEL_NOTE, EDIT_NOTE, GET_ALLNOTE} from "./actionTypes";
+import {ADD_NOTE, DEL_NOTE, EDIT_NOTE, GET_ALLNOTE, REQ_ALLNOTE} from "./actionTypes";
 import {shopData} from "../api";
 import store from "./index";
 
@@ -22,6 +22,8 @@ export const editNoteAction = (list) =>({
 //     lists
 // });
 
+// 不用中间件
+
 export const getAllNotesAction = () =>{
     return (dispatch)=>{
         shopData().then(
@@ -35,3 +37,9 @@ export const getAllNotesAction = () =>{
         )
     }
 };
+
+//用thunk
+
+export const reqAllNotesAction = () => ({type:REQ_ALLNOTE});
+
+//用saga

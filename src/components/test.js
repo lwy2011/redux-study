@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './test.css'
 import store from '../store/index.js'
-import {addNoteAction, getAllNotesAction} from "../store/actionCreators";
+import {addNoteAction, getAllNotesAction, reqAllNotesAction} from "../store/actionCreators";
 import {List} from "./list";
 
 const Test = () => {
@@ -27,8 +27,8 @@ const Test = () => {
     // };
     useEffect(
          () => {
-             const action = getAllNotesAction();
-             //store.dispatch(action);
+             const action = reqAllNotesAction();
+             store.dispatch(action);
         },[]
     );
     const addNotes = ()=>{
