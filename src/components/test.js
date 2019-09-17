@@ -3,7 +3,6 @@ import './test.css'
 import store from '../store/index.js'
 import {addNoteAction, getAllNotesAction} from "../store/actionCreators";
 import {List} from "./list";
-import {shopData} from "../api";
 
 const Test = () => {
     const [now, setTimer] = useState(new Date().toLocaleString());
@@ -29,7 +28,7 @@ const Test = () => {
     useEffect(
          () => {
              const action = getAllNotesAction();
-             store.dispatch(action);
+             //store.dispatch(action);
         },[]
     );
     const addNotes = ()=>{
