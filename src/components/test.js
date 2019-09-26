@@ -3,12 +3,17 @@ import './test.css'
 import store from '../store/index.js'
 import {addNoteAction, getAllNotesAction, reqAllNotesAction} from "../store/actionCreators";
 import {List} from "./list";
+import {connect} from "react-redux";
 
-const Test = () => {
+const Test = (props) => {
     const [now, setTimer] = useState(new Date().toLocaleString());
     const [note, setNote] = useState('');
 
-    const Lists = store.getState();
+    // const Lists = store.getState();   无react-redux的时候，引入data
+
+    //有react-redux的时候，引入data:
+    const {notes} = props;
+
 
     // store.subscribe(()=>{console.log(Lists)});函数式不订阅，也是可以的。
     useEffect(
@@ -27,8 +32,13 @@ const Test = () => {
     // };
     useEffect(
          () => {
-             const action = reqAllNotesAction();
-             store.dispatch(action);
+             // const action = reqAllNotesAction();
+             // store.dispatch(action);     没有引入react-redux的时候
+
+
+             //引入react-redux的用法
+             console.log(props);
+             props.reqAllNotes()
         },[]
     );
     const addNotes = ()=>{
@@ -57,7 +67,7 @@ const Test = () => {
                 <ul>
                     {/*{console.log(JSON.stringify(Lists))}*/}
                     {
-                        Lists.map((list,index)=>
+                        notes.map((list,index)=>
                             <List index={index}
                                   list={list} key={index}
                                   now={now}
@@ -71,6 +81,25 @@ const Test = () => {
 
             }
         </div>
-)
+    )
 };
-export default Test;
+
+
+//react-redux加入，用了connect，第一个参数是store，第二个参数是派发行为！
+
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        reqAllNotes(){
+            const action = reqAllNotesAction();
+            dispatch(action)
+        }
+    }
+};
+
+
+const mapStateToProps = (state)=>{
+    return {
+        notes : state
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Test);
